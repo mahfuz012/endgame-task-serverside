@@ -84,6 +84,30 @@ app.get("/applicationdetails", async(req,res)=>{
   })
 
 
+  app.get('/applycollegesdata/:email',  async (req, res) => {
+
+    const getData = req.params.email
+
+    const findID = { usergmail: getData };
+    const result = await admissiondata.find(findID).toArray();
+
+    const query = { _id: { $in: result.map((p) => new ObjectId(p.collegeID)) } };
+
+    const searchfindData = await collegedetails.find(query).toArray();
+ 
+    res.send(searchfindData);
+ 
+
+
+  })
+
+
+
+
+
+
+
+
   app.get('/collegedetails',  async (req, res) => {
 
   
