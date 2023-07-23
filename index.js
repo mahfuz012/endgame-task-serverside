@@ -67,17 +67,11 @@ app.get("/useridentity", async(req,res)=>{
     res.send(result)
 })
 
+app.get("/applicationdetails", async(req,res)=>{
+    const result = await allUserCollection.find().toArray()
+    res.send(result)
+})
 
-
-
-
-app.post('/jwt', (req, res) => {
-    const user = req.body
-    const token = jwt.sign(user, process.env.TOKEN_SECRET, { expiresIn: '30d' })
-    res.send({ token })
-  })
-
-  
 
 
   app.get('/findgmaildetails',  async (req, res) => {
@@ -106,6 +100,13 @@ app.post('/jwt', (req, res) => {
 
 
 
+
+
+  app.post('/jwt', (req, res) => {
+    const user = req.body
+    const token = jwt.sign(user, process.env.TOKEN_SECRET, { expiresIn: '30d' })
+    res.send({ token })
+  })
 
 
 app.post("/userdetailsadd", async(req,res)=>{
