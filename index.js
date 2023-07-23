@@ -58,6 +58,7 @@ async function run() {
     const allUserCollection = client.db("end-game").collection("user-identity")
     const collegedetails = client.db("end-game").collection("college-details")
     const admissiondata = client.db("end-game").collection("admission-data")
+    const feedback = client.db("end-game").collection("feedback")
 
 
 
@@ -123,7 +124,11 @@ app.get("/applicationdetails", async(req,res)=>{
 
 
 
-
+app.post("/feedbackdata", async(req,res)=>{
+  const getdata= req.body 
+  const result = await feedback.insertOne(getdata)
+  res.send(result)
+})
 
 
   app.post('/jwt', (req, res) => {
