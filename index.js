@@ -68,7 +68,7 @@ app.get("/useridentity", async(req,res)=>{
 })
 
 app.get("/applicationdetails", async(req,res)=>{
-    const result = await allUserCollection.find().toArray()
+    const result = await admissiondata.find().toArray()
     res.send(result)
 })
 
