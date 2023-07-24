@@ -59,17 +59,29 @@ async function run() {
     const collegedetails = client.db("end-game").collection("college-details")
     const admissiondata = client.db("end-game").collection("admission-data")
     const feedback = client.db("end-game").collection("feedback")
-
+    const reserachpaper = client.db("end-game").collection("reserach-paper")
 
 
 
 app.get("/useridentity", async(req,res)=>{
     const result = await allUserCollection.find().toArray()
+
     res.send(result)
 })
 
 app.get("/applicationdetails", async(req,res)=>{
     const result = await admissiondata.find().toArray()
+    res.send(result)
+})
+
+app.get("/reserachpapers", async(req,res)=>{
+    const result = await reserachpaper.find().toArray()
+    res.send(result)
+})
+
+
+app.get("/feedbackapply", async(req,res)=>{
+    const result = await feedback.find().toArray()
     res.send(result)
 })
 
