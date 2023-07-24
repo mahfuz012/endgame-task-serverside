@@ -97,7 +97,7 @@ app.get("/feedbackapply", async(req,res)=>{
   })
 
 
-  app.get('/applycollegesdata/:email',  async (req, res) => {
+  app.get('/applycollegesdata/:email',verifyJWT,  async (req, res) => {
 
     const getData = req.params.email
 
@@ -136,7 +136,7 @@ app.get("/feedbackapply", async(req,res)=>{
 
 
 
-app.post("/feedbackdata", async(req,res)=>{
+app.post("/feedbackdata", verifyJWT,async(req,res)=>{
   const getdata= req.body 
   const result = await feedback.insertOne(getdata)
   res.send(result)
@@ -162,7 +162,7 @@ app.post("/userdetailsadd", async(req,res)=>{
     res.send(result)
 })
 
-app.post('/admissionformdetails', async(req,res)=>{
+app.post('/admissionformdetails',verifyJWT, async(req,res)=>{
   const getdata= req.body
   const datafind = getdata.usergmail
   const datafinds = getdata.collegeID
@@ -190,7 +190,7 @@ app.post('/admissionformdetails', async(req,res)=>{
 
 
 
-app.put("/updateuserdetails/:id", async (req, res) => {
+app.put("/updateuserdetails/:id",verifyJWT, async (req, res) => {
     const getId = req.params.id
     const { email,displayName,phone,university,blood,address } = req.body
     const findData = { _id : new ObjectId(getId) };
